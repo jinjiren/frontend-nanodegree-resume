@@ -119,6 +119,18 @@ var education = {
 /**
  * Start modify the DOM
  */
+
+// add internationalize button
+$('#main').append(internationalizeButton);
+
+function inName() {
+  var newName = bio.name;
+  newName = newName.split(' ');
+  console.log(newName);
+  newName = newName[0] + ' ' + newName[1].toUpperCase();
+  bio.name = newName;
+}
+
 // add name first
 $('#header').prepend(HTMLheaderName.replace('%data%', bio.name));
 // add skill, note that [] (empty array) is truthy in js
