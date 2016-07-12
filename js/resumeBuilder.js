@@ -55,7 +55,7 @@ var work = {
       employer: 'Metadata Inc.',
       title: 'Application Developer',
       location: 'Tokyo, Japan',
-      dates: '2015/02/20 - now',
+      dates: 'February 2015 - now',
       description: 'Part time job: developing various machine learning based application for customer companies.'
     }
   ]
@@ -64,12 +64,29 @@ var work = {
 var projects = {
   projects: [
     {
-      title: '',
-      dates: '',
-      description: '',
-      images: ['', '']
+      title: 'Arbitrary Length Image Annotation',
+      dates: 'April 2016',
+      description: 'We adopt the Recurrent Neural Networks (RNN) model to tackle the problem with arbitrary length image annotation. In addition, we explore and discuss the influence of different tag sequence orders in training phase.',
+      images: ['images/model.png', 'images/examples.png']
     }
-  ]
+  ],
+  display: function() {
+    projects.projects.forEach(function(project) {
+      $('#projects').append(HTMLprojectStart);
+      var formattedProjectInfo = [
+        // note that emplyer and title should be concatenated
+        HTMLprojectTitle.replace('%data%', project.title),
+        HTMLprojectDates.replace('%data%', project.dates),
+        HTMLprojectDescription.replace('%data%', project.description)
+      ];
+      project.images.forEach(function(image) {
+          formattedProjectInfo.push(HTMLprojectImage.replace('%data%', image));
+        });
+      formattedProjectInfo.forEach(function(info) {
+        $('.project-entry:last').append(info);
+      });
+    });
+  }
 };
 
 var bio = {
@@ -157,3 +174,9 @@ work.jobs.forEach(function(job) {
     $('.work-entry:last').append(info);
   });
 });
+
+// add projects
+projects.display();
+
+// add the map
+$('#mapDiv').append(googleMap);
