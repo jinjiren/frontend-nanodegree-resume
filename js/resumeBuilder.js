@@ -133,6 +133,7 @@ if (bio.skills.length > 0) {
 work.jobs.forEach(function(job) {
   $('#workExperience').append(HTMLworkStart);
   var formattedJobInfo = [
+    // note that emplyer and title should be concatenated
     HTMLworkEmployer.replace('%data%', job.employer) +
     HTMLworkTitle.replace('%data%', job.title),
     HTMLworkDates.replace('%data%', job.dates),
